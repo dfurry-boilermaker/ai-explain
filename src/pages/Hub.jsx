@@ -12,9 +12,14 @@ export default function Hub() {
       {/* ---- Top bar: gradient wordmark, like the reference ---- */}
       <header className="hub-bar wrap">
         <span className="wordmark gradient-text">The Invisible Machine</span>
-        <Link to="/what-you-can-do" className="hub-bar-link">
-          The checklist <Icon name="arrowRight" size={14} />
-        </Link>
+        <nav className="hub-bar-nav">
+          <Link to="/how-it-works" className="hub-bar-link">
+            How it works
+          </Link>
+          <Link to="/what-you-can-do" className="hub-bar-link">
+            The checklist <Icon name="arrowRight" size={14} />
+          </Link>
+        </nav>
       </header>
 
       {/* ---- Hero: copy + live flow visualization ---- */}
@@ -33,7 +38,9 @@ export default function Hub() {
             <Link to="/power" className="btn grad">
               Start the tour <Icon name="arrowRight" size={16} />
             </Link>
-            <a href="#explore" className="btn ghost">Jump to the topics</a>
+            <Link to="/how-it-works" className="btn ghost">
+              First, how does it work?
+            </Link>
           </div>
         </div>
         <div className="hub-hero-viz">

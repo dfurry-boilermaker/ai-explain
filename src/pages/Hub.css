@@ -13,6 +13,7 @@
   font-size: 1.15rem;
   letter-spacing: -0.02em;
 }
+.hub-bar-nav { display: inline-flex; align-items: center; gap: 10px; }
 .hub-bar-link {
   display: inline-flex;
   align-items: center;
@@ -27,6 +28,10 @@
   transition: background 0.2s, transform 0.2s var(--ease);
 }
 .hub-bar-link:hover { background: var(--bg-soft); transform: translateY(-1px); }
+@media (max-width: 560px) {
+  .hub-bar-nav { gap: 6px; }
+  .hub-bar-link { padding: 7px 11px; font-size: 0.85rem; }
+}
 
 /* ---- Hero ---- */
 .hub-hero {

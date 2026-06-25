@@ -1,27 +1,45 @@
 import { useState } from 'react'
 import RoomLayout from '../components/RoomLayout.jsx'
-import FaceCard from '../components/FaceCard.jsx'
 import './interactions.css'
 
-// Interaction: guess which portrait is AI-generated. On reveal we circle the
-// ACTUAL tells (asymmetric glasses, single earring, irregular teeth, melted
-// background) so people leave with a real skill — then the liar's dividend twist.
+// Interaction: stop asking visitors to spot a fake by eye. The more durable
+// skill is provenance: source, metadata, origin, and edit history.
 const ROUND = {
-  prompt: 'One of these portraits was made by AI. The other is a photograph. Which is the fake?',
-  fakeIndex: 0,
+  prompt: 'Two images can look convincing. Which one should you treat as unreliable?',
+  fakeId: 'synthetic',
 }
 
-const TELLS = [
-  'Eyes and glasses don’t quite line up — AI struggles with symmetry.',
-  'Teeth are slightly irregular and “melted” together.',
-  'Only one earring — accessories often don’t match.',
-  'The background warps and smears with no real detail.',
+const MEDIA = [
+  {
+    id: 'synthetic',
+    label: 'Image A',
+    status: 'Unverified synthetic image',
+    visualLabel: 'Viral image, origin unknown',
+    clues: [
+      'No original source before reposts.',
+      'No camera metadata or Content Credentials.',
+      'Background details repeat in unnatural ways.',
+      'The caption asks you to react before you verify.',
+    ],
+  },
+  {
+    id: 'verified',
+    label: 'Image B',
+    status: 'Verified source image',
+    visualLabel: 'Published image with origin trail',
+    clues: [
+      'Original publisher and timestamp are visible.',
+      'Source page links to the image directly.',
+      'Metadata or provenance record is available.',
+      'Reverse image search points back to the same origin.',
+    ],
+  },
 ]
 
 export default function Trust() {
   const [guess, setGuess] = useState(null)
   const revealed = guess !== null
-  const correct = guess === ROUND.fakeIndex
+  const correct = guess === ROUND.fakeId
 
   return (
     <RoomLayout slug="trust">
@@ -34,20 +52,23 @@ export default function Trust() {
         </div>
 
         <div className="guess-grid">
-          {[0, 1].map((i) => {
-            const isFake = i === ROUND.fakeIndex
+          {MEDIA.map((item) => {
+            const isFake = item.id === ROUND.fakeId
             return (
               <button
-                key={i}
-                className={`guess-tile ${revealed ? (isFake ? 'fake' : 'real') : ''} ${guess === i ? 'picked' : ''}`}
-                onClick={() => !revealed && setGuess(i)}
+                key={item.id}
+                className={`guess-tile media-tile ${item.id} ${revealed ? (isFake ? 'fake' : 'real') : ''} ${guess === item.id ? 'picked' : ''}`}
+                onClick={() => !revealed && setGuess(item.id)}
                 disabled={revealed}
               >
-                <FaceCard variant={isFake ? 'fake' : 'real'} revealed={revealed} />
+                <div className="media-photo" role="img" aria-label={item.visualLabel}>
+                  <span className="media-badge">{item.label}</span>
+                  <span className="media-caption">{item.visualLabel}</span>
+                </div>
                 {revealed && (
-                  <span className="guess-verdict">{isFake ? 'AI-GENERATED' : 'REAL PHOTO'}</span>
+                  <span className="guess-verdict">{item.status}</span>
                 )}
-                {!revealed && <span className="guess-pick">This is the fake</span>}
+                {!revealed && <span className="guess-pick">Treat this as unreliable</span>}
               </button>
             )
           })}
@@ -57,12 +78,19 @@ export default function Trust() {
           <div className="reveal-note">
             <p>
               {correct
-                ? 'Nice eye. But in studies, people are right only about half the time — and the markers below are easy to miss in a quick scroll.'
-                : 'Not this time — and that’s the point. Here’s what gave the fake away:'}
+                ? 'That’s the safer call. The important clue is not how polished the image looks — it’s whether the origin can be checked.'
+                : 'That’s the trap. A convincing image without an origin trail should be treated cautiously, even if it looks real.'}
             </p>
-            <ul className="tells">
-              {TELLS.map((t) => <li key={t}>{t}</li>)}
-            </ul>
+            <div className="verification-grid">
+              {MEDIA.map((item) => (
+                <div key={item.id} className={`verification-card ${item.id}`}>
+                  <strong>{item.status}</strong>
+                  <ul className="tells">
+                    {item.clues.map((clue) => <li key={clue}>{clue}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
             <p className="liars-dividend">
               <strong>The twist:</strong> once everyone knows fakes exist, a person caught on a{' '}
               <em>real</em> recording can just say “that’s a deepfake.” Doubt becomes a shield —

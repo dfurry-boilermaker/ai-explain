@@ -6,6 +6,7 @@ import Money from './pages/Money.jsx'
 import Labor from './pages/Labor.jsx'
 import Accountability from './pages/Accountability.jsx'
 import WhatYouCanDo from './pages/WhatYouCanDo.jsx'
+import HowItWorks from './pages/HowItWorks.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/money" element={<Money />} />
         <Route path="/labor" element={<Labor />} />
         <Route path="/accountability" element={<Accountability />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/what-you-can-do" element={<WhatYouCanDo />} />
       </Routes>
     </>
