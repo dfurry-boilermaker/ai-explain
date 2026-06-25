@@ -1,0 +1,136 @@
+.machineflow {
+  position: relative;
+}
+
+.mf-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* ---- Ribbons ---- */
+.mf-ribbon {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+  opacity: 0.5;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: mf-draw 1.1s var(--ease-out) forwards;
+  transition: opacity 0.35s var(--ease), stroke-width 0.35s var(--ease);
+}
+.mf-ribbon.neutral { stroke: var(--ink-2); opacity: 0.35; }
+.mf-ribbon.on { opacity: 0.95; stroke-width: 10; }
+.mf-ribbon.dim { opacity: 0.12; }
+
+@keyframes mf-draw { to { stroke-dashoffset: 0; } }
+
+/* ---- Endpoints ---- */
+.mf-endpoint rect {
+  fill: var(--bg-soft);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+.mf-end-label {
+  fill: var(--ink);
+  font-weight: 800;
+  font-size: 17px;
+  text-anchor: middle;
+}
+.mf-end-sub {
+  fill: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-anchor: middle;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Nodes ---- */
+.mf-node {
+  cursor: pointer;
+  outline: none;
+  opacity: 0;
+  animation: mf-pop 0.5s var(--ease-out) forwards;
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  transform-box: fill-box;
+}
+@keyframes mf-pop { from { opacity: 0; } to { opacity: 1; } }
+
+.mf-node-bg {
+  fill: #fff;
+  stroke: var(--line);
+  stroke-width: 1.5;
+  transition: stroke 0.3s var(--ease), filter 0.3s var(--ease);
+  filter: drop-shadow(0 4px 12px rgba(11, 18, 32, 0.06));
+}
+.mf-node-dot {
+  fill: color-mix(in srgb, var(--accent) 16%, #fff);
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  transition: fill 0.3s var(--ease);
+}
+.mf-node-title { fill: var(--ink); font-weight: 800; font-size: 16px; }
+.mf-node-q { fill: var(--muted); font-size: 12px; font-weight: 600; }
+
+.mf-node.on .mf-node-bg,
+.mf-node:focus-visible .mf-node-bg {
+  stroke: var(--accent);
+  filter: drop-shadow(0 10px 22px color-mix(in srgb, var(--accent) 34%, transparent));
+}
+.mf-node.on .mf-node-dot { fill: var(--accent); }
+.mf-node.dim { opacity: 0.42; }
+
+/* ---- Detail card: sits below the diagram so the full flow stays visible ---- */
+.mf-detail {
+  margin-top: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  min-height: 132px;
+  display: flex;
+  align-items: center;
+  transition: border-color 0.3s var(--ease);
+}
+.mf-detail::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: var(--grad);
+}
+.mf-detail.show { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.mf-detail.show::before { background: var(--accent); }
+
+.mf-detail-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+.mf-detail-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent);
+}
+.mf-detail-head .eyebrow { color: var(--accent); margin-bottom: 3px; }
+.mf-detail-head h3 { margin: 0; font-size: 1.3rem; }
+.mf-detail-lens { color: var(--ink-2); margin: 0 0 18px; font-size: 1rem; }
+.mf-detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  color: var(--accent);
+  text-decoration: none;
+}
+.mf-detail-link:hover { gap: 10px; }
+
+.mf-detail-empty .eyebrow { display: block; margin-bottom: 8px; color: var(--muted); }
+.mf-detail-empty p { color: var(--ink-2); margin: 0; font-size: 1.02rem; line-height: 1.55; }
+.mf-detail-empty strong { color: var(--ink); }
+

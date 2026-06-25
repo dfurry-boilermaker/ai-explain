@@ -1,0 +1,152 @@
+:root {
+  /* ---- Canvas: clean white, editorial grays (Polo Club style) ---- */
+  --bg: #ffffff;
+  --bg-soft: #f7f9fc;
+  --bg-softer: #eef2f8;
+  --card: #ffffff;
+
+  --ink: #0b1220;
+  --ink-2: #2a3650;
+  --muted: #5d6a82;
+  --line: rgba(11, 18, 32, 0.12);
+  --line-soft: rgba(11, 18, 32, 0.07);
+
+  /* ---- Semantic color system: each pressure owns a hue.
+         Color carries meaning, used saturated only on data/viz. ---- */
+  --power: #e8820c;     /* amber  — concentration / electricity */
+  --trust: #0ea5a4;     /* teal   — verification / signal */
+  --money: #16a34a;     /* green  — cash / extraction */
+  --labor: #e11d62;     /* rose   — human warmth */
+  --account: #7c3aed;   /* violet — the unresolved loop */
+
+  --power-ink: #9a5407;
+  --trust-ink: #0a6f6e;
+  --money-ink: #0f7a37;
+  --labor-ink: #b01049;
+  --account-ink: #5b21b6;
+
+  /* Brand gradient for the wordmark + hero accents */
+  --grad: linear-gradient(100deg, #7c3aed 0%, #2563eb 38%, #0ea5a4 70%, #16a34a 100%);
+  --grad-warm: linear-gradient(100deg, #e11d62 0%, #e8820c 100%);
+
+  --radius: 16px;
+  --radius-lg: 22px;
+  --maxw: 1180px;
+  --readw: 720px;            /* narrow reading column, like the reference */
+  --gutter: clamp(20px, 5vw, 56px);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-sm: 0 4px 16px rgba(11, 18, 32, 0.06);
+  --shadow: 0 14px 40px rgba(11, 18, 32, 0.10);
+  --shadow-lg: 0 30px 70px rgba(11, 18, 32, 0.14);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
+}
+
+a { color: inherit; }
+
+h1, h2, h3, h4 {
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.4em;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(2.5rem, 6.5vw, 4.6rem); }
+h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.55rem); }
+
+p { margin: 0 0 1rem; }
+
+.wrap {
+  max-width: calc(var(--maxw) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Narrow reading column for long-form prose, à la Transformer Explainer */
+.read {
+  max-width: calc(var(--readw) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.lead {
+  font-size: clamp(1.08rem, 2vw, 1.3rem);
+  color: var(--ink-2);
+  max-width: 60ch;
+  line-height: 1.55;
+}
+
+/* Gradient wordmark / gradient text utility */
+.gradient-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.85em 1.5em;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn.grad { background: var(--grad); }
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn.ghost:hover { background: var(--bg-soft); box-shadow: none; }
+
+.hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+::selection { background: color-mix(in srgb, #2563eb 22%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
