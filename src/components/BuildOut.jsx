@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { buildoutLayers, buildoutConcentration } from '../data/buildout.js'
+import { chainLayers, concentration } from '../data/buildout.js'
 import Icon from './Icon.jsx'
 import './BuildOut.css'
 
@@ -11,7 +11,7 @@ export default function BuildOut() {
   return (
     <div className="buildout">
       <div className="buildout-layers">
-        {buildoutLayers.map((layer) => {
+        {chainLayers.map((layer) => {
           const isOpen = open === layer.key
           return (
             <div key={layer.key} className={`bo-layer ${isOpen ? 'open' : ''}`}>
@@ -29,7 +29,7 @@ export default function BuildOut() {
                     <a key={c.ticker} className="bo-company" href={c.url} target="_blank" rel="noopener noreferrer">
                       <div className="bo-company-top">
                         <span className="bo-name">{c.name}</span>
-                        <span className="bo-ticker">{c.exch}: {c.ticker}</span>
+                        <span className="bo-ticker">{c.exch ? `${c.exch}: ` : ''}{c.ticker}</span>
                       </div>
                       <p className="bo-role">{c.role}</p>
                       <p className="bo-stat">{c.stat}</p>
@@ -45,10 +45,10 @@ export default function BuildOut() {
 
       <aside className="bo-concentration">
         <p className="eyebrow">The concentration risk</p>
-        <h3>{buildoutConcentration.headline}</h3>
-        <p>{buildoutConcentration.body}</p>
-        <a className="bo-cite" href={buildoutConcentration.url} target="_blank" rel="noopener noreferrer">
-          {buildoutConcentration.cite} <Icon name="external" size={11} strokeWidth={2} />
+        <h3>{concentration.headline}</h3>
+        <p>{concentration.body}</p>
+        <a className="bo-cite" href={concentration.url} target="_blank" rel="noopener noreferrer">
+          {concentration.cite} <Icon name="external" size={11} strokeWidth={2} />
         </a>
       </aside>
 

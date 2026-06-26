@@ -28,6 +28,12 @@
   transition: background 0.2s, transform 0.2s var(--ease);
 }
 .hub-bar-link:hover { background: var(--bg-soft); transform: translateY(-1px); }
+.hub-bar-link.accent {
+  color: #fff;
+  background: var(--grad);
+  border-color: transparent;
+}
+.hub-bar-link.accent:hover { background: var(--grad); opacity: 0.92; }
 @media (max-width: 560px) {
   .hub-bar-nav { gap: 6px; }
   .hub-bar-link { padding: 7px 11px; font-size: 0.85rem; }
@@ -84,6 +90,8 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
+.path-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .path-grid-3 { grid-template-columns: 1fr; } }
 .path-card {
   position: relative;
   display: flex;
@@ -108,6 +116,12 @@
 .path-card.pressures::before {
   background: linear-gradient(90deg, var(--power), var(--trust), var(--money), var(--labor), var(--account));
 }
+.path-card.invest::before {
+  background: linear-gradient(90deg, var(--money), var(--power));
+}
+.path-card.invest .path-icon { background: color-mix(in srgb, var(--money) 14%, transparent); color: var(--money-ink); }
+.path-card.invest:hover { border-color: color-mix(in srgb, var(--money) 30%, var(--line)); }
+.path-card.invest:hover .path-cta { color: var(--money-ink); }
 .path-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow);

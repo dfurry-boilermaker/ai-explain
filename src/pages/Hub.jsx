@@ -15,8 +15,8 @@ export default function Hub() {
           <Link to="/how-it-works" className="hub-bar-link">
             How it works
           </Link>
-          <Link to="/what-you-can-do" className="hub-bar-link">
-            The checklist <Icon name="arrowRight" size={14} />
+          <Link to="/invest" className="hub-bar-link accent">
+            The build-out <Icon name="arrowRight" size={14} />
           </Link>
         </nav>
       </header>
@@ -34,11 +34,11 @@ export default function Hub() {
             <strong>labor</strong>, and <strong>accountability</strong>. Look inside the machine.
           </p>
           <div className="hub-actions">
-            <Link to="/how-it-works" className="btn grad">
-              See how it works <Icon name="arrowRight" size={16} />
+            <Link to="/invest" className="btn grad">
+              Follow the money <Icon name="arrowRight" size={16} />
             </Link>
-            <Link to="/power" className="btn ghost">
-              Or explore the five pressures
+            <Link to="/how-it-works" className="btn ghost">
+              See how it works
             </Link>
           </div>
         </div>
@@ -47,28 +47,35 @@ export default function Hub() {
         </div>
       </section>
 
-      {/* ---- Choose a path: concise handoff instead of duplicate explainers ---- */}
+      {/* ---- Choose a path ---- */}
       <section className="hub-paths wrap" aria-labelledby="paths-title">
         <Reveal className="hub-paths-head">
-          <p className="eyebrow">Start with the map</p>
-          <h2 id="paths-title">First understand the machine, then question the world around it.</h2>
+          <p className="eyebrow">Three ways in</p>
+          <h2 id="paths-title">Follow the money, learn the machine, or question its impact.</h2>
           <p className="lead">
-            The site now has two layers. One explains what an AI model is doing. The other follows
-            the social pressures that shape what it becomes.
+            Trillions are flowing into the AI build-out. Trace where that money goes and who
+            profits — then go deeper on how the technology works and the pressures it creates.
           </p>
         </Reveal>
-        <div className="path-grid">
-          <Reveal as={Link} to="/how-it-works" className="path-card mechanics">
+        <div className="path-grid path-grid-3">
+          <Reveal as={Link} to="/invest" className="path-card invest">
+            <span className="path-icon"><Icon name="money" size={24} /></span>
+            <span className="path-kicker">The build-out</span>
+            <h3>Follow the money</h3>
+            <p>Trace AI capital down the value chain, meet the public tickers, and learn the investing ideas behind the boom.</p>
+            <span className="path-cta">Trace the money <Icon name="arrowRight" size={15} /></span>
+          </Reveal>
+          <Reveal as={Link} to="/how-it-works" className="path-card mechanics" delay={70}>
             <span className="path-icon"><Icon name="robot" size={24} /></span>
-            <span className="path-kicker">Layer one</span>
+            <span className="path-kicker">The mechanics</span>
             <h3>How it actually works</h3>
             <p>Walk through tokens, prediction, attention, training, and the infrastructure behind the model.</p>
             <span className="path-cta">Open the mechanics <Icon name="arrowRight" size={15} /></span>
           </Reveal>
-          <Reveal as="a" href="#explore" className="path-card pressures" delay={80}>
+          <Reveal as="a" href="#explore" className="path-card pressures" delay={140}>
             <span className="path-icon"><Icon name="power" size={24} /></span>
-            <span className="path-kicker">Layer two</span>
-            <h3>The five hidden pressures</h3>
+            <span className="path-kicker">The impact</span>
+            <h3>The five pressures</h3>
             <p>Explore power, trust, money, labor, and accountability through short interactive rooms.</p>
             <span className="path-cta">Choose a room <Icon name="arrowRight" size={15} /></span>
           </Reveal>
