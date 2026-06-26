@@ -21,65 +21,59 @@ export default function Hub() {
         </nav>
       </header>
 
-      {/* ---- Hero: copy + live flow visualization ---- */}
-      <section className="hub-hero wrap">
-        <div className="hub-hero-copy">
+      {/* ---- Hero = the choice. Three paths are the main landing. ---- */}
+      <section className="hub-choice wrap" aria-labelledby="choice-title">
+        <div className="hub-choice-head">
           <p className="eyebrow">An interactive explainer for everyone</p>
-          <h1>
-            AI’s hardest problems are <span className="gradient-text">human.</span>
+          <h1 id="choice-title">
+            Follow the money, learn the machine, or{' '}
+            <span className="gradient-text">question its impact.</span>
           </h1>
           <p className="lead">
-            The chatbot is only the surface. Every answer it gives passes through five forces you
-            never see — <strong>power</strong>, <strong>trust</strong>, <strong>money</strong>,{' '}
-            <strong>labor</strong>, and <strong>accountability</strong>. Look inside the machine.
+            Trillions are flowing into the AI build-out. Pick a way in — trace where the money goes
+            and who profits, see how the technology actually works, or weigh the pressures it
+            creates. No technical background needed.
           </p>
-          <div className="hub-actions">
-            <Link to="/invest" className="btn grad">
-              Follow the money <Icon name="arrowRight" size={16} />
-            </Link>
-            <Link to="/how-it-works" className="btn ghost">
-              See how it works
-            </Link>
-          </div>
         </div>
-        <div className="hub-hero-viz">
-          <MachineFlow />
-        </div>
-      </section>
 
-      {/* ---- Choose a path ---- */}
-      <section className="hub-paths wrap" aria-labelledby="paths-title">
-        <Reveal className="hub-paths-head">
-          <p className="eyebrow">Three ways in</p>
-          <h2 id="paths-title">Follow the money, learn the machine, or question its impact.</h2>
-          <p className="lead">
-            Trillions are flowing into the AI build-out. Trace where that money goes and who
-            profits — then go deeper on how the technology works and the pressures it creates.
-          </p>
-        </Reveal>
-        <div className="path-grid path-grid-3">
-          <Reveal as={Link} to="/invest" className="path-card invest">
-            <span className="path-icon"><Icon name="money" size={24} /></span>
-            <span className="path-kicker">The build-out</span>
-            <h3>Follow the money</h3>
+        <div className="path-grid path-grid-3 hub-choice-grid">
+          <Link to="/invest" className="path-card invest">
+            <span className="path-icon"><Icon name="money" size={26} /></span>
+            <span className="path-kicker">Follow the money</span>
+            <h3>The AI build-out</h3>
             <p>Trace AI capital down the value chain, meet the public tickers, and learn the investing ideas behind the boom.</p>
             <span className="path-cta">Trace the money <Icon name="arrowRight" size={15} /></span>
-          </Reveal>
-          <Reveal as={Link} to="/how-it-works" className="path-card mechanics" delay={70}>
-            <span className="path-icon"><Icon name="robot" size={24} /></span>
-            <span className="path-kicker">The mechanics</span>
+          </Link>
+          <Link to="/how-it-works" className="path-card mechanics">
+            <span className="path-icon"><Icon name="robot" size={26} /></span>
+            <span className="path-kicker">Learn the machine</span>
             <h3>How it actually works</h3>
             <p>Walk through tokens, prediction, attention, training, and the infrastructure behind the model.</p>
             <span className="path-cta">Open the mechanics <Icon name="arrowRight" size={15} /></span>
-          </Reveal>
-          <Reveal as="a" href="#explore" className="path-card pressures" delay={140}>
-            <span className="path-icon"><Icon name="power" size={24} /></span>
-            <span className="path-kicker">The impact</span>
+          </Link>
+          <a href="#explore" className="path-card pressures">
+            <span className="path-icon"><Icon name="power" size={26} /></span>
+            <span className="path-kicker">Question its impact</span>
             <h3>The five pressures</h3>
             <p>Explore power, trust, money, labor, and accountability through short interactive rooms.</p>
             <span className="path-cta">Choose a room <Icon name="arrowRight" size={15} /></span>
-          </Reveal>
+          </a>
         </div>
+      </section>
+
+      {/* ---- Supporting system view ---- */}
+      <section className="hub-system wrap">
+        <Reveal className="hub-system-copy">
+          <p className="eyebrow">The whole system, at a glance</p>
+          <h2>Every answer passes through five hidden forces.</h2>
+          <p className="lead">
+            The chatbot is only the surface. Hover the machine to see what sits underneath each
+            reply — the same pressures the rooms below explore in depth.
+          </p>
+        </Reveal>
+        <Reveal className="hub-system-viz" delay={80}>
+          <MachineFlow />
+        </Reveal>
       </section>
 
       {/* ---- Doors grid ---- */}

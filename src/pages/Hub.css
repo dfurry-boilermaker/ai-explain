@@ -39,30 +39,31 @@
   .hub-bar-link { padding: 7px 11px; font-size: 0.85rem; }
 }
 
-/* ---- Hero ---- */
-.hub-hero {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: clamp(28px, 5vw, 72px);
-  align-items: center;
-  padding-top: clamp(28px, 5vw, 60px);
-  padding-bottom: clamp(44px, 7vw, 84px);
+/* ---- Hero = the choice (main landing) ---- */
+.hub-choice {
+  padding-top: clamp(28px, 5vw, 56px);
+  padding-bottom: clamp(44px, 7vw, 80px);
 }
-.hub-hero h1 { max-width: 15ch; }
-.hub-hero .lead { margin-top: 20px; }
-.hub-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-
-@media (max-width: 900px) {
-  .hub-hero { grid-template-columns: 1fr; }
+.hub-choice-head {
+  max-width: 880px;
+  margin-bottom: clamp(28px, 4vw, 44px);
 }
+.hub-choice-head .eyebrow { display: block; margin-bottom: 12px; }
+.hub-choice-head h1 { max-width: 20ch; }
+.hub-choice-head .lead { margin-top: 18px; }
+.hub-choice-grid { margin-top: 4px; }
 
-/* ---- Choose-a-path handoff ---- */
-.hub-paths {
+/* ---- Supporting system view ---- */
+.hub-system {
   position: relative;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
   padding-top: clamp(44px, 7vw, 80px);
   padding-bottom: clamp(44px, 7vw, 80px);
 }
-.hub-paths::before {
+.hub-system::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -77,14 +78,11 @@
   border-bottom: 1px solid var(--line-soft);
   z-index: -1;
 }
-.hub-paths-head {
-  max-width: 780px;
-  margin-bottom: 26px;
+.hub-system-copy .lead { margin-top: 16px; }
+@media (max-width: 900px) {
+  .hub-system { grid-template-columns: 1fr; }
 }
-.hub-paths-head .eyebrow {
-  display: block;
-  margin-bottom: 10px;
-}
+
 .path-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
