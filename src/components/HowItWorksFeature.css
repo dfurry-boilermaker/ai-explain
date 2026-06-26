@@ -1,0 +1,87 @@
+.hiwf {
+  padding: clamp(48px, 7vw, 88px) 0;
+}
+
+.hiwf-head {
+  max-width: 760px;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+.hiwf-head .eyebrow { display: block; margin-bottom: 12px; }
+.hiwf-head h2 { margin-bottom: 14px; }
+
+.hiwf-body {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+
+/* ---- Live demo side ---- */
+.hiwf-demo { position: relative; }
+.hiwf-demo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--money-ink);
+  background: color-mix(in srgb, var(--money) 13%, transparent);
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+/* ---- Concept lineup side ---- */
+.hiwf-concepts-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.hiwf-list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hiwf-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s var(--ease);
+}
+.hiwf-item:hover {
+  background: var(--card);
+  border-color: var(--line);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+.hiwf-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  flex: none;
+}
+.hiwf-item-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.hiwf-item-text strong { color: var(--ink); font-size: 1rem; }
+.hiwf-item-text span { color: var(--muted); font-size: 0.86rem; }
+.hiwf-item > svg { color: var(--muted); flex: none; }
+.hiwf-item:hover > svg { color: var(--ink); }
+
+.hiwf-cta { margin-top: 4px; }
+
+@media (max-width: 880px) {
+  .hiwf-body { grid-template-columns: 1fr; }
+  .hiwf-demo { order: 2; }
+}

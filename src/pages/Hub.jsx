@@ -4,6 +4,7 @@ import Reveal from '../components/Reveal.jsx'
 import Icon from '../components/Icon.jsx'
 import MachineFlow from '../components/MachineFlow.jsx'
 import Scrollytelling from '../components/Scrollytelling.jsx'
+import HowItWorksFeature from '../components/HowItWorksFeature.jsx'
 import './Hub.css'
 
 export default function Hub() {
@@ -35,11 +36,11 @@ export default function Hub() {
             <strong>labor</strong>, and <strong>accountability</strong>. Look inside the machine.
           </p>
           <div className="hub-actions">
-            <Link to="/power" className="btn grad">
-              Start the tour <Icon name="arrowRight" size={16} />
+            <Link to="/how-it-works" className="btn grad">
+              See how it works <Icon name="arrowRight" size={16} />
             </Link>
-            <Link to="/how-it-works" className="btn ghost">
-              First, how does it work?
+            <Link to="/power" className="btn ghost">
+              Or explore the five pressures
             </Link>
           </div>
         </div>
@@ -47,6 +48,11 @@ export default function Hub() {
           <MachineFlow />
         </div>
       </section>
+
+      {/* ---- How it actually works: promoted to the main screen ---- */}
+      <div className="hub-hiwf wrap">
+        <HowItWorksFeature />
+      </div>
 
       {/* ---- Scrollytelling: pinned visual + stepping narrative ---- */}
       <div className="hub-scrolly wrap">
