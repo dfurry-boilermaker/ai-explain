@@ -46,8 +46,8 @@ export default function MachineFlow() {
         <defs>
           {themes.map((t) => (
             <linearGradient key={t.slug} id={`mf-grad-${t.slug}-${uid}`} x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor={`var(--${t.slug})`} stopOpacity="0.15" />
-              <stop offset="100%" stopColor={`var(--${t.slug})`} stopOpacity="0.55" />
+              <stop offset="0%" stopColor={t.accent} stopOpacity="0.15" />
+              <stop offset="100%" stopColor={t.accent} stopOpacity="0.55" />
             </linearGradient>
           ))}
         </defs>
@@ -62,7 +62,7 @@ export default function MachineFlow() {
                 key={`in-${t.slug}`}
                 d={ribbon(HUB_X, MID_Y, NODE_X, y)}
                 className={`mf-ribbon ${active === t.slug ? 'on' : ''} ${dim ? 'dim' : ''}`}
-                style={{ stroke: `var(--${t.slug})`, animationDelay: `${i * 0.12}s` }}
+                style={{ stroke: t.accent, animationDelay: `${i * 0.12}s` }}
               />
             )
           })}
@@ -75,7 +75,7 @@ export default function MachineFlow() {
                 key={`out-${t.slug}`}
                 d={ribbon(NODE_X + NODE_W, y, OUT_HUB_X, MID_Y)}
                 className={`mf-ribbon ${active === t.slug ? 'on' : ''} ${dim ? 'dim' : ''}`}
-                style={{ stroke: `var(--${t.slug})`, animationDelay: `${0.3 + i * 0.12}s` }}
+                style={{ stroke: t.accent, animationDelay: `${0.3 + i * 0.12}s` }}
               />
             )
           })}
@@ -106,7 +106,7 @@ export default function MachineFlow() {
               <g
                 key={t.slug}
                 className={`mf-node ${on ? 'on' : ''} ${dim ? 'dim' : ''}`}
-                style={{ '--accent': `var(--${t.slug})`, animationDelay: `${0.15 + i * 0.1}s` }}
+                style={{ '--accent': t.accent, animationDelay: `${0.15 + i * 0.1}s` }}
                 onMouseEnter={() => setActive(t.slug)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(t.slug)}
@@ -128,7 +128,7 @@ export default function MachineFlow() {
       {/* Detail card — appears on demand, like the reference's floating explainer */}
       <div className={`mf-detail ${activeTheme ? 'show' : ''}`} aria-live="polite">
         {activeTheme ? (
-          <div style={{ '--accent': `var(--${activeTheme.slug})` }}>
+          <div style={{ '--accent': activeTheme.accent }}>
             <div className="mf-detail-head">
               <span className="mf-detail-icon"><Icon name={activeTheme.icon} size={20} /></span>
               <div>

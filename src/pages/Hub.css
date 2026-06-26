@@ -39,23 +39,24 @@
   grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(28px, 5vw, 72px);
   align-items: center;
-  padding-top: clamp(28px, 5vw, 64px);
-  padding-bottom: clamp(48px, 7vw, 96px);
+  padding-top: clamp(28px, 5vw, 60px);
+  padding-bottom: clamp(44px, 7vw, 84px);
 }
-.hub-hero h1 { max-width: 14ch; }
+.hub-hero h1 { max-width: 15ch; }
 .hub-hero .lead { margin-top: 20px; }
 .hub-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
 @media (max-width: 900px) {
   .hub-hero { grid-template-columns: 1fr; }
-  .hub-hero-viz { order: -1; }
 }
 
-/* ---- How-it-works feature: tinted band so it reads as the main screen ---- */
-.hub-hiwf {
+/* ---- Choose-a-path handoff ---- */
+.hub-paths {
   position: relative;
+  padding-top: clamp(44px, 7vw, 80px);
+  padding-bottom: clamp(44px, 7vw, 80px);
 }
-.hub-hiwf::before {
+.hub-paths::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -64,25 +65,100 @@
   width: 100vw;
   background:
     radial-gradient(circle at 18% 20%, rgba(37, 99, 235, 0.06), transparent 30rem),
-    radial-gradient(circle at 85% 80%, rgba(22, 163, 74, 0.06), transparent 28rem),
+    radial-gradient(circle at 85% 80%, rgba(14, 165, 164, 0.07), transparent 28rem),
     var(--bg-soft);
   border-top: 1px solid var(--line-soft);
   border-bottom: 1px solid var(--line-soft);
   z-index: -1;
 }
-
-/* ---- Scrollytelling wrapper ---- */
-.hub-scrolly {
-  padding-top: clamp(36px, 6vw, 72px);
-  padding-bottom: clamp(40px, 8vw, 100px);
+.hub-paths-head {
+  max-width: 780px;
+  margin-bottom: 26px;
+}
+.hub-paths-head .eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.path-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), border-color 0.22s var(--ease);
+}
+.path-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: var(--grad);
+}
+.path-card.pressures::before {
+  background: linear-gradient(90deg, var(--power), var(--trust), var(--money), var(--labor), var(--account));
+}
+.path-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: rgba(37, 99, 235, 0.24);
+}
+.path-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--bg-softer);
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.path-kicker {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.path-card h3 {
+  margin-bottom: 10px;
+}
+.path-card p {
+  color: var(--ink-2);
+  flex: 1;
+  max-width: 54ch;
+}
+.path-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 20px;
+  color: var(--ink);
+  font-weight: 850;
+}
+.path-card:hover .path-cta {
+  color: #2563eb;
 }
 
 /* ---- Doors ---- */
-.hub-grid { padding-top: 40px; padding-bottom: 56px; }
-.hub-grid > .reveal { margin-bottom: 28px; }
+.hub-grid { padding-top: clamp(48px, 7vw, 88px); padding-bottom: 64px; }
+.hub-grid > .reveal { margin-bottom: 30px; max-width: 780px; }
+.hub-grid > .reveal .lead { margin-top: 12px; }
 .hub-doors {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 18px;
 }
 
@@ -147,4 +223,30 @@
 .hub-foot h2 { max-width: 18ch; }
 .hub-foot .lead { margin: 18px 0 0; }
 .hub-foot strong { color: var(--ink); }
-.hub-foot .btn { margin-top: 30px; }
+.hub-foot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+@media (max-width: 760px) {
+  .path-grid { grid-template-columns: 1fr; }
+  .path-card { min-height: 0; }
+}
+
+@media (max-width: 560px) {
+  .hub-bar {
+    align-items: flex-start;
+    gap: 14px;
+    flex-direction: column;
+  }
+  .hub-bar-nav {
+    flex-wrap: wrap;
+  }
+  .hub-actions .btn,
+  .hub-foot-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

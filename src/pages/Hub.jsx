@@ -3,8 +3,6 @@ import { themes } from '../data/themes.js'
 import Reveal from '../components/Reveal.jsx'
 import Icon from '../components/Icon.jsx'
 import MachineFlow from '../components/MachineFlow.jsx'
-import Scrollytelling from '../components/Scrollytelling.jsx'
-import HowItWorksFeature from '../components/HowItWorksFeature.jsx'
 import './Hub.css'
 
 export default function Hub() {
@@ -49,21 +47,43 @@ export default function Hub() {
         </div>
       </section>
 
-      {/* ---- How it actually works: promoted to the main screen ---- */}
-      <div className="hub-hiwf wrap">
-        <HowItWorksFeature />
-      </div>
-
-      {/* ---- Scrollytelling: pinned visual + stepping narrative ---- */}
-      <div className="hub-scrolly wrap">
-        <Scrollytelling />
-      </div>
+      {/* ---- Choose a path: concise handoff instead of duplicate explainers ---- */}
+      <section className="hub-paths wrap" aria-labelledby="paths-title">
+        <Reveal className="hub-paths-head">
+          <p className="eyebrow">Start with the map</p>
+          <h2 id="paths-title">First understand the machine, then question the world around it.</h2>
+          <p className="lead">
+            The site now has two layers. One explains what an AI model is doing. The other follows
+            the social pressures that shape what it becomes.
+          </p>
+        </Reveal>
+        <div className="path-grid">
+          <Reveal as={Link} to="/how-it-works" className="path-card mechanics">
+            <span className="path-icon"><Icon name="robot" size={24} /></span>
+            <span className="path-kicker">Layer one</span>
+            <h3>How it actually works</h3>
+            <p>Walk through tokens, prediction, attention, training, and the infrastructure behind the model.</p>
+            <span className="path-cta">Open the mechanics <Icon name="arrowRight" size={15} /></span>
+          </Reveal>
+          <Reveal as="a" href="#explore" className="path-card pressures" delay={80}>
+            <span className="path-icon"><Icon name="power" size={24} /></span>
+            <span className="path-kicker">Layer two</span>
+            <h3>The five hidden pressures</h3>
+            <p>Explore power, trust, money, labor, and accountability through short interactive rooms.</p>
+            <span className="path-cta">Choose a room <Icon name="arrowRight" size={15} /></span>
+          </Reveal>
+        </div>
+      </section>
 
       {/* ---- Doors grid ---- */}
       <section className="hub-grid wrap" id="explore">
         <Reveal>
           <p className="eyebrow">Five rooms</p>
-          <h2>Open any door and look underneath.</h2>
+          <h2>Choose one pressure to inspect first.</h2>
+          <p className="lead">
+            Each room has one interaction, a few sourced claims, and a question to carry into the
+            next AI tool you use.
+          </p>
         </Reveal>
         <div className="hub-doors">
           {themes.map((t, i) => (
@@ -73,7 +93,7 @@ export default function Hub() {
               delay={i * 60}
               to={`/${t.slug}`}
               className="door"
-              style={{ '--accent': `var(--${t.slug})` }}
+              style={{ '--accent': t.accent }}
             >
               <span className="door-icon" aria-hidden="true">
                 <Icon name={t.icon} size={24} />
@@ -93,15 +113,18 @@ export default function Hub() {
       <footer className="hub-foot wrap">
         <Reveal>
           <h2>
-            The question isn’t “is this AI smart?”
+            The point is not to become cynical.
           </h2>
           <p className="lead">
-            It’s: <strong>who built it, what is it optimizing for, who benefits, whose labor is
-            hidden, and who’s responsible when it’s wrong?</strong>
+            It is to ask better questions: <strong>who built it, what is it optimizing for, who
+            benefits, whose labor is hidden, and who’s responsible when it’s wrong?</strong>
           </p>
-          <Link to="/power" className="btn grad">
-            Start with Power <Icon name="arrowRight" size={16} />
-          </Link>
+          <div className="hub-foot-actions">
+            <Link to="/what-you-can-do" className="btn grad">
+              Get the checklist <Icon name="arrowRight" size={16} />
+            </Link>
+            <Link to="/power" className="btn ghost">Start with Power</Link>
+          </div>
         </Reveal>
       </footer>
     </main>
